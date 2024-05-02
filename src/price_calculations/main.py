@@ -1,4 +1,7 @@
 """
+    PRE USAGE SETUP:
+        pip install -r requirements.txt
+
     EXAMPLE USAGE:
 
         cd src
