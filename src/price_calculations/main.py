@@ -31,10 +31,24 @@ expiry_val = 1.0
 lognormal_val = True
 r_val = 0.03
 sigma_val = 0.3
+
+##################################################
+
+"""
+    CONSTANTS DICTATING PROCESSING THREADS.
+"""
+
 num_dt_val = 100
-num_paths_val = 10000
+
+# num_paths_val = 10000
+num_paths_val = 10
+
 num_laguerre_val = 3
 num_iters_val = 15
+
+####################################################
+
+
 epsilon_val = 1e-3
 spot_pct_noise_val = 0.25
 
@@ -194,25 +208,32 @@ if __name__ == "__main__":
     )
     print("Longstaff-Schwartz Price = %.3f" % ls_price)
 
-    expiry_mean, expiry_var = get_future_price_mean_var(
-        spot_price_val, 0.0, expiry_val, lognormal_val, ir_func, isig_func
-    )
 
-    gp = GridPricing(
-        spot_price=spot_price_val,
-        payoff=lambda _, x: (1.0 if is_call_val else -1.0) * (x - strike_val),
-        expiry=expiry_val,
-        lognormal=lognormal_val,
-        ir=ir_func,
-        isig=isig_func,
-    )
+    """
+        DEAD/UNUSABLE CODE
+        TO BE REMOVED.
+        \/\/\/\/\/\/\/\/\/\/\/\/
+    """
 
-    grid_price = gp.get_price(
-        num_dt=num_dt_val,
-        num_dx=100,
-        center=expiry_mean,
-        width=np.sqrt(expiry_var) * 4.0,
-    )
+    # expiry_mean, expiry_var = get_future_price_mean_var(
+    #     spot_price_val, 0.0, expiry_val, lognormal_val, ir_func, isig_func
+    # )
 
-    print("Grid Price = %.3f" % grid_price)
-    print("European Price = %.3f" % ebsp.option_price)
+    # gp = GridPricing(
+    #     spot_price=spot_price_val,
+    #     payoff=lambda _, x: (1.0 if is_call_val else -1.0) * (x - strike_val),
+    #     expiry=expiry_val,
+    #     lognormal=lognormal_val,
+    #     ir=ir_func,
+    #     isig=isig_func,
+    # )
+
+    # grid_price = gp.get_price(
+    #     num_dt=num_dt_val,
+    #     num_dx=100,
+    #     center=expiry_mean,
+    #     width=np.sqrt(expiry_var) * 4.0,
+    # )
+
+    # print("Grid Price = %.3f" % grid_price)
+    # print("European Price = %.3f" % ebsp.option_price)
