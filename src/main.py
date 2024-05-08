@@ -17,9 +17,9 @@ from typing import Set
 import numpy as np
 
 # Local modules
-from price_calculations.bs_pricing import EuropeanBSPricing
-from price_calculations.american_pricing import AmericanPricing
-from price_calculations.utils import lagval
+from bs_pricing import EuropeanBSPricing
+from american_pricing import AmericanPricing
+from utils import lagval
 
 is_call_val = False
 spot_price_val = 80.0

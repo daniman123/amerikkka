@@ -3,7 +3,7 @@ from typing import Callable, Sequence, Set, Tuple
 
 import numpy as np
 
-from price_calculations.utils import get_future_price_mean_var, memoize
+from utils import get_future_price_mean_var, memoize
 
 StateType = Tuple[int, np.ndarray]
 ActionType = bool
