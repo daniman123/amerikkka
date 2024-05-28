@@ -5,7 +5,7 @@
     EXAMPLE USAGE:
 
         cd src
-        python -m price_calculations.main
+        python -m main
 
 """
 
