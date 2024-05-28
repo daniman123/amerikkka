@@ -5,7 +5,7 @@
     EXAMPLE USAGE:
 
         cd src
-        python -m price_calculations.main
+        python -m main
 
 """
 
@@ -91,6 +91,9 @@ spot_pct_noise_val = 0.25
 
 
 if __name__ == "__main__":
+
+    print(f"num_paths_val = {num_paths_val}\n")
+
 
     # This is creating an instance of the `EuropeanBSPricing` class with
     # specific parameter values such as `is_call`, `spot_price`, `strike`, `expiry`, `r`, and `sigma`.
@@ -209,13 +212,17 @@ if __name__ == "__main__":
             ret = rat * rat
         return ret
 
+
+    
+    # Preallocate the list
+    feature_funcs = [None] * (num_laguerre_val + 4)
+    for i in range(num_laguerre_val + 4):
+        feature_funcs[i] = lambda t, x, i=i: rl_feature_func(t, x[-1], i)
+
     lspi_price = amp.get_lspi_price(
         num_dt=num_dt_val,
         num_paths=num_paths_val,
-        feature_funcs=[
-            lambda t, x, i=i: rl_feature_func(t, x[-1], i)
-            for i in range(num_laguerre_val + 4)
-        ],
+        feature_funcs=feature_funcs,
         num_iters=num_iters_val,
         epsilon=epsilon_val,
         spot_pct_noise=spot_pct_noise_val,
@@ -225,10 +232,7 @@ if __name__ == "__main__":
     fqi_price = amp.get_fqi_price(
         num_dt=num_dt_val,
         num_paths=num_paths_val,
-        feature_funcs=[
-            lambda t, x, i=i: rl_feature_func(t, x[-1], i)
-            for i in range(num_laguerre_val + 4)
-        ],
+        feature_funcs=feature_funcs,
         num_iters=num_iters_val,
         epsilon=epsilon_val,
         spot_pct_noise=spot_pct_noise_val,
