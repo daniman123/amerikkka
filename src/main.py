@@ -1,6 +1,6 @@
 """
+    SETUP LOCAL VIRTUAL ENV.
     PRE USAGE SETUP:
-        SETUP LOCAL VIRTUAL ENV.
         pip install -r requirements.txt
 
     EXAMPLE USAGE:
